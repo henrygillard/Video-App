@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
     name: String,
-    year: [Number],
-
+    year: [Number]
 });
 
 module.exports = mongoose.model('Category', categorySchema);
