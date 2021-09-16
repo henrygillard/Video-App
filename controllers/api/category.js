@@ -6,7 +6,7 @@ module.exports = {
   };
 
   async function index(req, res) {
-    const category = await Category.find({})
+    const category = await Category.find({}).populate('name').exec();
     res.json(category);
 }
   

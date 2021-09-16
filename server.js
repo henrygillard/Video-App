@@ -29,6 +29,7 @@ app.listen(port, function() {
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/category', require('./routes/api/category'));
+app.use('/api/groups', require('./routes/api/group'));
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

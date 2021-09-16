@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema({
     name: String,
-    year: [Number]
+    group: {type: Schema.Types.ObjectId, ref: "Group"},
+    year: {type: Schema.Types.ObjectId, ref: "Year"},
 });
 
 module.exports = mongoose.model('Category', categorySchema);

@@ -1,11 +1,13 @@
 import './App.css';
+import { Route } from 'react-router-dom';
 import { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
-import CatList from '../../components/CatList/CatList';
+import GroupList from '../../components/GroupList/GroupList';
+import GroupDetailPage from '../GroupDetailPage/GroupDetailPage';
 
 
 function App() {
-  const [category, setCategory] = useState([]);
+  const [groups, setGroups] = useState([]);
 
   
 
@@ -14,10 +16,11 @@ function App() {
     <Layout>
       <h1>Hello World!</h1>
       <ul>
-        
-      <CatList category={category} setCategory={setCategory}/>
-        
+      <GroupList groups={groups} setGroups={setGroups}/>
       </ul>
+      <Route path="/groups/:groupName">
+        <GroupDetailPage groups={groups} />
+      </Route>
     </Layout>
   );
 }
