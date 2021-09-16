@@ -26,8 +26,8 @@ const Group = require('./models/group');
         {name: "The Academy", category: categories[0]},
         {name: "Troopers", category: categories[0]},
         {name: "Pacific Crest", category: categories[0]},
-        {name: "RCC Indoor Percussion", category: categories[1]},
-        {name: "Connecticut Hurricanes", category: categories[2]},
+        {name: "RCC Indoor Percussion", category: categories[2]},
+        {name: "Connecticut Hurricanes", category: categories[1]},
     ]);
     
     console.log(groups);

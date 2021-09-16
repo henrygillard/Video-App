@@ -1,15 +1,24 @@
 import './App.css';
 import { Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Layout from '../../components/Layout/Layout';
 import GroupList from '../../components/GroupList/GroupList';
 import GroupDetailPage from '../GroupDetailPage/GroupDetailPage';
+import * as groupsAPI from '../../utilities/groups-api';
+
 
 
 function App() {
   const [groups, setGroups] = useState([]);
 
-  
+  useEffect(function() {
+    async function getGroups() {
+      const groups = await groupsAPI.getAll();
+      setGroups(groups);
+    }
+    getGroups();
+  }, []);
+
 
 
   return (
