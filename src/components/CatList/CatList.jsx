@@ -12,13 +12,19 @@ export default function CatList({category, setCategory}) {
         }
         getCategory();
       }, []);
-const years = category.forEach((y,idx) => <li>{y.year}</li>)
+
+ 
     return(
         <div>
             {category.map((c, idx) => <li>
-                {c.name} <ul>{years}</ul>
-                </li> )}
-            
+                {c.name}
+                    <ul>
+                        {c.year.map(year =>  <li>{year}</li>)}
+                    </ul>
+                </li>
+                )}
+
+                
         </div>
-    )
+        )
 }
