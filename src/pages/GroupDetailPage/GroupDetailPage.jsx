@@ -11,7 +11,7 @@ export default function GroupDetailPage({groups}) {
         <div>
             <h1>{groupName} detail page</h1>
             <h3>Circuit - {group.category.name}</h3>
-            <ReactPlayer url="http://www.youtube.com/embed/xDMP3i36naA"></ReactPlayer>
+            <ReactPlayer url={group.videoUrl}></ReactPlayer>
         </div>
     )
 }
