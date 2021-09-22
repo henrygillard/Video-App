@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Layout>
-      <h1>Hello World!</h1>
+      <h1>Marching Arts Database</h1>
       <ul>
       <GroupList groups={groups} setGroups={setGroups}/>
       </ul>
