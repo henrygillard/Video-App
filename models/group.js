@@ -9,7 +9,7 @@ const yearSchema = new Schema({
 const groupSchema = new Schema({
     name: {type: String},
     year: [yearSchema],
-    category: { type: Schema.Types.ObjectId, ref: "Category"},
+    category: String,
     videoUrl: {type: String}
 })
 

@@ -5,12 +5,14 @@ import GroupCard from '../GroupCard/GroupCard';
 export default function CatList({groups, setGroups}) {
 
    
-        
-    const dci = groups.filter(cat => cat.category.name === "DCI")
-    const wgi = groups.filter(cat => cat.category.name === "WGI")
-    const dca = groups.filter(cat => cat.category.name === "DCA")
+    const allGroups = groups.map(g => <div>{g.name}</div>)    
+    const dci = groups.filter(cat => cat.category === "DCI")
+    const wgi = groups.filter(cat => cat.category === "WGI")
+    const dca = groups.filter(cat => cat.category === "DCA")
     return(
         <div>
+            <h3>All Groups</h3>
+            {allGroups}
             <h1>DCI</h1>
             {dci.map((g) => <GroupCard key={g.name} group={g}/>
                 )}

@@ -10,7 +10,7 @@ export default function GroupDetailPage({groups}) {
     return(
         <div>
             <h1>{groupName} detail page</h1>
-            <h3>Circuit - {group.category.name}</h3>
+            <h3>Circuit - {group.category}</h3>
             <ReactPlayer url={group.videoUrl}></ReactPlayer>
         </div>
     )

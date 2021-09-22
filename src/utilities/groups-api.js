@@ -5,3 +5,7 @@ const BASE_URL = '/api/groups';
 export function getAll() {
   return sendRequest(BASE_URL);
 }
+
+export function create(groupData) {
+  return sendRequest(BASE_URL, 'POST', groupData)
+}
