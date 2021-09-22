@@ -6,6 +6,7 @@ import GroupList from '../../components/GroupList/GroupList';
 import GroupDetailPage from '../GroupDetailPage/GroupDetailPage';
 import * as groupsAPI from '../../utilities/groups-api';
 import NewGroupForm from '../NewGroupForm/NewGroupForm';
+import NavBar from '../../components/NavBar/NavBar';
 
 
 
@@ -24,19 +25,18 @@ function App() {
 
   return (
     <Layout>
-      <h1>Marching Arts Database</h1>
-      <Link to="/group/create"><h3>Create Group</h3></Link>
-      <ul>
+      <NavBar/>
+        <Route exact path="/">
       <GroupList groups={groups} setGroups={setGroups}/>
-      </ul>
+      
+      </Route>
       <Switch>
       <Route path="/groups/:groupName">
         <GroupDetailPage groups={groups} />
       </Route>
-      <Route exact path="/group/create">
+      <Route exact path="/create">
         <NewGroupForm groups={groups} />
       </Route>
-      {/* <Redirect to="/" /> */}
       </Switch>
     </Layout>
   );

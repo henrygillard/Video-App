@@ -14,4 +14,5 @@ async function create(req, res) {
   
   const group = await Group.create(req.body);
   res.json(group)
+  
 }

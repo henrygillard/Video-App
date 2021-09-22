@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useHistory } from "react-router";
 import * as groupAPI from "../../utilities/groups-api"
 import * as categoryAPI from "../../utilities/category-api"
 
@@ -9,10 +10,12 @@ export default function NewGroupForm({groups}) {
         category: "",
     });
     
+    const history = useHistory();
 
     async function handleSubmit(evt) {
         evt.preventDefault();
         await groupAPI.create(groupData);
+        history.push('/')
 
     }
 
@@ -36,11 +39,16 @@ export default function NewGroupForm({groups}) {
             </div>
             <div>
                 Category: 
-                <input
+                <select
                 name="category"
                 value={groupData.category.name}
                 required
-                onChange={handleChange}/>
+                onChange={handleChange}
+                >
+                <option value="DCI">DCI</option>
+                <option value="WGI">WGI</option>
+                <option value="DCA">DCA</option>
+                </select>
             </div>
             <button type="submit">ADD GROUP</button>
         </form>
