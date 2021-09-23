@@ -12,6 +12,7 @@ import NavBar from '../../components/NavBar/NavBar';
 
 function App() {
   const [groups, setGroups] = useState([]);
+  const [selected, setSelected] = useState(false)
 
   useEffect(function() {
     async function getGroups() {
@@ -27,8 +28,10 @@ function App() {
     <Layout>
       <NavBar/>
         <Route exact path="/">
-      <GroupList groups={groups} setGroups={setGroups}/>
-      
+      <GroupList groups={groups} 
+      setGroups={setGroups} 
+      selected={selected} 
+      setSelected={setSelected}/>
       </Route>
       <Switch>
       <Route path="/groups/:groupName">

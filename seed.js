@@ -8,7 +8,7 @@ const Group = require('./models/group');
 
     await Group.deleteMany({});
     const groups = await Group.create([
-        {name: "Blue Devils", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=FO6d8zDf1Hg&ab_channel=ThatWasLoud"},
+        {name: "Blue Devils", category: "DCI", videoUrl: ["https://www.youtube.com/watch?v=FO6d8zDf1Hg&ab_channel=ThatWasLoud", "https://www.youtube.com/watch?v=F4_j5W8-L3g&ab_channel=DrumCorpsInternational"]},
         {name: "Santa Clara Vanguard", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=F4_j5W8-L3g&ab_channel=DrumCorpsInternational"},
         {name: "The Cavaliers", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=v3dVWvqTPs8&ab_channel=oddblacksheepx"},
         {name: "The Bluecoats", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=YyzzG5MTMyM&ab_channel=Thepnakhin_"},

@@ -10,7 +10,7 @@ const groupSchema = new Schema({
     name: {type: String},
     year: [yearSchema],
     category: String,
-    videoUrl: {type: String}
+    videoUrl: [String]
 })
 
 module.exports = mongoose.model('Group', groupSchema);

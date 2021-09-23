@@ -8,6 +8,7 @@ export default function NewGroupForm({groups}) {
     const [groupData, setGroupData] = useState({
         name: "",
         category: "",
+        videoUrl: ""
     });
     
     const history = useHistory();
@@ -49,6 +50,16 @@ export default function NewGroupForm({groups}) {
                 <option value="WGI">WGI</option>
                 <option value="DCA">DCA</option>
                 </select>
+            </div>
+            <div>
+                Video URL: 
+                <input
+                name="videoUrl"
+                value={groupData.videoUrl}
+                required
+                onChange={handleChange}
+                >
+                </input>
             </div>
             <button type="submit">ADD GROUP</button>
         </form>
