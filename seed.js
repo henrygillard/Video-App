@@ -3,12 +3,29 @@ require('./config/database');
 
 const Category = require("./models/category");
 const Group = require('./models/group');
+const Year = require('./models/year');
 
 (async function() {
 
+
     await Group.deleteMany({});
     const groups = await Group.create([
-        {name: "Blue Devils", category: "DCI", videoUrl: ["https://www.youtube.com/watch?v=FO6d8zDf1Hg&ab_channel=ThatWasLoud", "https://www.youtube.com/watch?v=F4_j5W8-L3g&ab_channel=DrumCorpsInternational"]},
+        {name: "Blue Devils", 
+        category: "DCI", 
+        videoUrl: ["https://www.youtube.com/watch?v=FO6d8zDf1Hg&ab_channel=ThatWasLoud", "https://www.youtube.com/watch?v=F4_j5W8-L3g&ab_channel=DrumCorpsInternational"],
+        years: [{
+            year: "2021",
+            videoUrl: ["https://www.youtube.com/watch?v=19IvCPXwBDM&ab_channel=TheBlueDevils"],
+        }, {
+            year: "2020",
+            videoUrl: ["https://www.youtube.com/watch?v=aR3dp_J_370&ab_channel=TheBlueDevils"]
+        }],
+        
+        
+
+        },
+        
+            
         {name: "Santa Clara Vanguard", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=F4_j5W8-L3g&ab_channel=DrumCorpsInternational"},
         {name: "The Cavaliers", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=v3dVWvqTPs8&ab_channel=oddblacksheepx"},
         {name: "The Bluecoats", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=YyzzG5MTMyM&ab_channel=Thepnakhin_"},

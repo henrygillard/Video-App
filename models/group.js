@@ -2,13 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const yearSchema = new Schema({
-    year: {type: Number, min: 1972, max: 2022},
+    year: String,
+    videoUrl: [String],
     
 })
 
 const groupSchema = new Schema({
     name: {type: String},
-    year: [yearSchema],
+    years: [yearSchema],
     category: String,
     videoUrl: [String]
 })

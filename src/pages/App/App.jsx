@@ -7,6 +7,7 @@ import GroupDetailPage from '../GroupDetailPage/GroupDetailPage';
 import * as groupsAPI from '../../utilities/groups-api';
 import NewGroupForm from '../NewGroupForm/NewGroupForm';
 import NavBar from '../../components/NavBar/NavBar';
+import YearDetailPage from '../YearDetailPage/YearDetailPage';
 
 
 
@@ -36,6 +37,9 @@ function App() {
       <Switch>
       <Route path="/groups/:groupName">
         <GroupDetailPage groups={groups} />
+      </Route>
+      <Route path="/groups/:groupName/:year">
+        <YearDetailPage groups={groups} />
       </Route>
       <Route exact path="/create">
         <NewGroupForm groups={groups} />
