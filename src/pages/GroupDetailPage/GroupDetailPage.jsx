@@ -14,7 +14,7 @@ export default function GroupDetailPage({groups}) {
             <h3>Circuit - {group.category}</h3>
             <ReactPlayer url={group.videoUrl}></ReactPlayer>
             <h3>Years</h3>
-            {group.years.map(y => <YearCard key={y.year} year={y}/>)}
+            {group.years.map(y => <YearCard key={y.year} year={y} group={group}/>)}
         </div>
     )
 }

@@ -38,7 +38,7 @@ function App() {
       <Route path="/groups/:groupName">
         <GroupDetailPage groups={groups} />
       </Route>
-      <Route path="/groups/:groupName/:year">
+      <Route path="/:groupName/:groupYear">
         <YearDetailPage groups={groups} />
       </Route>
       <Route exact path="/create">
