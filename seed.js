@@ -18,7 +18,7 @@ const Year = require('./models/year');
             videoUrl: ["https://www.youtube.com/watch?v=19IvCPXwBDM&ab_channel=TheBlueDevils"],
         }, {
             year: "2020",
-            videoUrl: ["https://www.youtube.com/watch?v=aR3dp_J_370&ab_channel=TheBlueDevils"]
+            videoUrl: ["https://www.youtube.com/watch?v=aR3dp_J_370&ab_channel=TheBlueDevils", "https://www.youtube.com/watch?v=ApFwMHirU6M&ab_channel=TheBlueDevils"]
         }],
         
         
