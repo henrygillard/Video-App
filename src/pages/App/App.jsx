@@ -34,10 +34,10 @@ function App() {
       setSelected={setSelected}/>
       </Route>
       <Switch>
-      <Route path="/groups/:groupName">
+      <Route exact path="/groups/:groupName">
         <GroupDetailPage groups={groups} />
       </Route>
-      <Route path="/:groupName/:groupYear">
+      <Route exact path="/:groupName/:groupYear">
         <YearDetailPage groups={groups} />
       </Route>
       <Route exact path="/create">

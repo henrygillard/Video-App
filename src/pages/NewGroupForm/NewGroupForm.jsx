@@ -4,11 +4,16 @@ import * as groupAPI from "../../utilities/groups-api"
 import * as categoryAPI from "../../utilities/category-api"
 
 export default function NewGroupForm({groups}) {
+    const allGroups = groups.map(g => <option></option>)
 
     const [groupData, setGroupData] = useState({
         name: "",
         category: "",
-        videoUrl: ""
+        videoUrl: "",
+        years: [{
+            year: "",
+            videoUrl: [""],
+        }]
     });
     
     const history = useHistory();
@@ -38,6 +43,15 @@ export default function NewGroupForm({groups}) {
                 required
                 onChange={handleChange}/>
             </div>
+            <div>
+                Year: 
+                <input
+                name="year"
+                value={groupData.years.year}
+                required
+                onChange={handleChange}/>
+            </div>
+            
             <div>
                 Category: 
                 <select

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import ReactPlayer from "react-player";
 import YearCard from "../../components/YearCard/YearCard";
 

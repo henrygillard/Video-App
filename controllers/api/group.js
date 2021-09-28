@@ -11,7 +11,7 @@ module.exports = {
 }
 
 async function create(req, res) {
-  
+  req.body.years.push(req.body)
   const group = await Group.create(req.body);
   res.json(group)
   
