@@ -5,7 +5,11 @@ require('./config/database');
 // Require the Mongoose models
 // const User = require('./models/user');
 // const Item = require('./models/item');
-const Category = require('./models/category');
-// const Order = require('./models/order');
+const Group = require('./models/group');
 
-console.log(Category)
+
+(async function getAllYears() {
+    const allYears = await Group.find({name: 'Blue Devils'})
+    console.log(allYears)
+})()
+

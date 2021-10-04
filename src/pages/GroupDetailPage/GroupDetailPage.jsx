@@ -1,20 +1,35 @@
 import { Link, useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import YearCard from "../../components/YearCard/YearCard";
+import * as groupsAPI from "../../utilities/groups-api"
 
 export default function GroupDetailPage({groups}) {
+    
+    let { id } = useParams();
 
-    let {groupName} = useParams();
+    const [thisGroup, setThisGroup] = useState()
 
-    let group = groups.find(g => g.name === groupName)
+    useEffect(function () {
+        async function getGroup() {
+            const currentGroup = await groupsAPI.getGroup(id);
+            setThisGroup(currentGroup);
+        }
+        getGroup();
+    }, [id]);
+
+
+    // let group = groups.find(g => g.name === id)
+    // const years = thisGroup.years.map(y => <YearCard key={y.year} year={y} group={thisGroup}/>)
     
     return(
         <div>
-            <h1>{groupName} detail page</h1>
-            <h3>Circuit - {group.category}</h3>
-            <ReactPlayer url={group.videoUrl}></ReactPlayer>
+            <h1> {thisGroup && thisGroup.name} detail page</h1>
+            <h3>Circuit - {thisGroup && thisGroup.category}</h3>
+            <ReactPlayer url={thisGroup && thisGroup.videoUrl}></ReactPlayer>
             <h3>Years</h3>
-            {group.years.map(y => <YearCard key={y.year} year={y} group={group}/>)}
+            { thisGroup && thisGroup.years.map((y)  => <YearCard key={y.year} year={y} group={thisGroup}/>)}
+            
         </div>
     )
 }

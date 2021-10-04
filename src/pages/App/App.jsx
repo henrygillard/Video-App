@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Link, Redirect, Switch } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useParams } from 'react';
 import Layout from '../../components/Layout/Layout';
 import GroupList from '../../components/GroupList/GroupList';
 import GroupDetailPage from '../GroupDetailPage/GroupDetailPage';
@@ -14,6 +14,9 @@ import YearDetailPage from '../YearDetailPage/YearDetailPage';
 function App() {
   const [groups, setGroups] = useState([]);
   const [selected, setSelected] = useState(false)
+  
+ 
+
 
   useEffect(function() {
     async function getGroups() {
@@ -24,20 +27,23 @@ function App() {
   }, []);
 
 
+ 
+
+
   return (
     <Layout>
       <NavBar/>
+        <Switch>
         <Route exact path="/">
       <GroupList groups={groups} 
       setGroups={setGroups} 
       selected={selected} 
       setSelected={setSelected}/>
       </Route>
-      <Switch>
-      <Route exact path="/groups/:groupName">
-        <GroupDetailPage groups={groups} />
+      <Route exact path="/:id">
+        <GroupDetailPage  />
       </Route>
-      <Route exact path="/:groupName/:groupYear">
+      <Route exact path="/:id/:yId">
         <YearDetailPage groups={groups} />
       </Route>
       <Route exact path="/create">

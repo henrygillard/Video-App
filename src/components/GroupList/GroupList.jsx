@@ -8,13 +8,6 @@ export default function CatList({groups, setGroups}) {
 
    
 
-    useEffect(function() {
-        async function getGroups() {
-          const groups = await groupsAPI.getAll();
-          setGroups(groups);
-        }
-        getGroups();
-      }, []);
 
       const [dciSel, setdciSel] = useState(false)
       const [wgiSel, setwgiSel] = useState(false)
