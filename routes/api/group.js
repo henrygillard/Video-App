@@ -7,5 +7,6 @@ router.get('/', groupCtrl.index);
 router.get("/:id", groupCtrl.detail);
 router.get("/:id/:yId", groupCtrl.yearDetail);
 router.post("/", groupCtrl.create);
+router.put("/:id", groupCtrl.updateOne);
 
 module.exports = router;

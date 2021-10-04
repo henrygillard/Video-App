@@ -5,6 +5,7 @@ module.exports = {
     create,
     detail,
     yearDetail,
+    updateOne,
   };
 
   async function index(req, res) {
@@ -30,5 +31,13 @@ async function yearDetail(req, res) {
     
 
   });
+  res.json(group);
+}
+
+async function updateOne(req, res) {
+  const group = await Group.findOne( {_id: req.params.id} );
+  group.years.push(req.body)
+  console.log(group)
+  group.save();
   res.json(group);
 }

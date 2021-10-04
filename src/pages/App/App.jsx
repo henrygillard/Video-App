@@ -8,6 +8,7 @@ import * as groupsAPI from '../../utilities/groups-api';
 import NewGroupForm from '../NewGroupForm/NewGroupForm';
 import NavBar from '../../components/NavBar/NavBar';
 import YearDetailPage from '../YearDetailPage/YearDetailPage';
+import UpdateGroupInfo from '../UpdateGroupInfo/UpdateGroupInfo';
 
 
 

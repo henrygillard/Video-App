@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import YearCard from "../../components/YearCard/YearCard";
 import * as groupsAPI from "../../utilities/groups-api"
+import UpdateGroupInfo from "../UpdateGroupInfo/UpdateGroupInfo";
 
 export default function GroupDetailPage({groups}) {
     
@@ -26,6 +27,7 @@ export default function GroupDetailPage({groups}) {
         <div>
             <h1> {thisGroup && thisGroup.name} detail page</h1>
             <h3>Circuit - {thisGroup && thisGroup.category}</h3>
+            <UpdateGroupInfo group={thisGroup}/>
             <ReactPlayer url={thisGroup && thisGroup.videoUrl}></ReactPlayer>
             <h3>Years</h3>
             { thisGroup && thisGroup.years.map((y)  => <YearCard key={y.year} year={y} group={thisGroup}/>)}

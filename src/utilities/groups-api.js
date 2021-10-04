@@ -20,7 +20,7 @@ export function create(groupData) {
   return sendRequest(BASE_URL, 'POST', groupData)
 }
 
-export function updateGroup(groupData, groupName) {
-  return sendRequest(`${BASE_URL}/${groupName}`, 'PUT', groupData)
+export function updateGroup(groupData, id) {
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', groupData)
 }
 
