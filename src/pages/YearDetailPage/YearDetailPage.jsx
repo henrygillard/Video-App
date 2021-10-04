@@ -6,8 +6,7 @@ import * as groupsAPI from "../../utilities/groups-api";
 export default function YearDetailPage({groups}) {
 
 
-    const [thisYear, setThisYear] = useState({})
-    const [thisGroup, setThisGroup] = useState({})
+    const [thisGroup, setThisGroup] = useState()
     const {id} = useParams()
     const {yId} = useParams();
 
@@ -19,21 +18,17 @@ export default function YearDetailPage({groups}) {
         getGroup();
     }, [id]);
 
-    useEffect(function () {
-        async function getYear() {
-            const currentYear = await groupsAPI.getYear(id, yId);
-            setThisYear(currentYear);
-        }
-        getYear();
-    }, [yId]);
-    
-    // let group = groups.find(g => g.name === groupName)
-    // let year = group.years.find(y => y.year === groupYear)
+    let year;
+    if (thisGroup) {
+        year = thisGroup.years.find(g => g._id === yId)
+    }
 
     return(
         <>
-        <h2>{thisGroup.name} - {thisYear.year}</h2>
-        {/* <VideoList group={thisGroup} year={thisYear}/> */}
+        <h2>{thisGroup && thisGroup.name} - {thisGroup && year.year}</h2>
+        {thisGroup && 
+        <VideoList group={thisGroup} year={year}/>
+        }
         </>
     )
 }

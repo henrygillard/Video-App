@@ -25,6 +25,10 @@ async function detail(req, res) {
 }
 
 async function yearDetail(req, res) {
-  const group = await Group.findById(req.params.yId);
+  const group = await Group.findOne({
+    _id: req.params.id,
+    
+
+  });
   res.json(group);
 }
