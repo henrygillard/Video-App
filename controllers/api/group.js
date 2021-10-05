@@ -14,7 +14,6 @@ module.exports = {
 }
 
 async function create(req, res) {
-  req.body.years.push(req.body)
   const group = await Group.create(req.body);
   res.json(group)
   
@@ -36,8 +35,19 @@ async function yearDetail(req, res) {
 
 async function updateOne(req, res) {
   const group = await Group.findOne( {_id: req.params.id} );
-  group.years.push(req.body)
-  console.log(group)
+  // console.log(group.years)
+  const findSameYear = group.years.find(y => y.year === req.body.year)
+  const findSameVideo = group.years.find(y => y.videoUrl === req.body.videoUrl)
+  if (findSameYear && findSameYear.year === req.body.year) {
+      console.log(findSameYear.videoUrl)
+      console.log("Same Year Different Video")
+      findSameYear.videoUrl.push(req.body.videoUrl)
+    } else if (findSameYear && findSameYear.year === req.body.year) {
+    // console.log("Video already uploaded to Same Year")
+  } else {
+    group.years.push(req.body)
+
+  }
   group.save();
   res.json(group);
 }

@@ -23,7 +23,7 @@ export default function CatList({groups, setGroups}) {
         <div>
             <h3>All Groups</h3>
             {allGroups}
-            <Link to="/create"><h3>Create Group</h3></Link>
+            <Link to="/groups/create"><h3>Create Group</h3></Link>
             <h1 onClick={(evt) => setdciSel(true) } >DCI</h1>
         
             {dci.map((g) => <GroupCard className="dci-groups" key={g.name} group={g} selected={dciSel}/>

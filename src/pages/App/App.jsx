@@ -47,7 +47,7 @@ function App() {
       <Route exact path="/:id/:yId">
         <YearDetailPage groups={groups} />
       </Route>
-      <Route exact path="/create">
+      <Route exact path="/groups/create">
         <NewGroupForm groups={groups} />
       </Route>
       </Switch>

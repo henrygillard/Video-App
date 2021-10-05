@@ -1,20 +1,20 @@
 import { useState } from "react"
 import { useHistory } from "react-router";
 import * as groupAPI from "../../utilities/groups-api"
-import * as categoryAPI from "../../utilities/category-api"
 
 export default function NewGroupForm({groups}) {
-    const allGroups = groups.map(g => <option></option>)
 
-    const [groupData, setGroupData] = useState({
+    const initData = {
+       name: "",
+       category: "",
+       videoUrl: "",
+    }
+
+    const [groupData, setGroupData] = useState([{
         name: "",
-        category: "",
-        videoUrl: "",
-        years: [{
-            year: "",
-            videoUrl: [""],
-        }]
-    });
+       category: "",
+       videoUrl: "",
+    }]);
     
     const history = useHistory();
 
@@ -40,14 +40,6 @@ export default function NewGroupForm({groups}) {
                 <input
                 name="name"
                 value={groupData.name}
-                required
-                onChange={handleChange}/>
-            </div>
-            <div>
-                Year: 
-                <input
-                name="year"
-                value={groupData.years.year}
                 required
                 onChange={handleChange}/>
             </div>

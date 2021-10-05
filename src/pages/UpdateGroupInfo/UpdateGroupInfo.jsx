@@ -3,12 +3,11 @@ import { useHistory, useParams } from "react-router";
 import * as groupAPI from "../../utilities/groups-api"
 
 export default function UpdateGroupInfo({group}) {
-
     const {id} = useParams();
+    const thisGroupYear = group && group.years.find(g => g._id === id)
     const initData = {
       group
     };
-
 
     const [groupData, setGroupData] = useState(
        {initData}
@@ -20,7 +19,8 @@ export default function UpdateGroupInfo({group}) {
         evt.preventDefault();
         
         await groupAPI.updateGroup(groupData, id);
-        history.push(`/${id}`)
+        window.location.reload()
+        // history.push(`/${id}`)
 
     }
 
@@ -33,6 +33,7 @@ export default function UpdateGroupInfo({group}) {
     return(
         <>
         <h1>New Video Form</h1>
+        <h3>{thisGroupYear}</h3>
         <form onSubmit={handleSubmit}>
             <div>
                 Year: 
@@ -40,10 +41,13 @@ export default function UpdateGroupInfo({group}) {
                 name="year"
                 value={groupData.years}
                 required
-                onChange={handleChange}/>
+                onChange={handleChange}
+                />
+                
+                
             </div>
             
-            {/* <div>
+            <div>
                 Video URL: 
                 <input
                 name="videoUrl"
@@ -52,7 +56,7 @@ export default function UpdateGroupInfo({group}) {
                 onChange={handleChange}
                 >
                 </input>
-            </div> */}
+            </div>
             <button type="submit">ADD GROUP</button>
         </form>
 
