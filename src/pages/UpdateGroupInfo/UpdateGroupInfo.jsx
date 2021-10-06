@@ -4,7 +4,6 @@ import * as groupAPI from "../../utilities/groups-api"
 
 export default function UpdateGroupInfo({group}) {
     const {id} = useParams();
-    const thisGroupYear = group && group.years.find(g => g._id === id)
     const initData = {
       group
     };
@@ -12,28 +11,33 @@ export default function UpdateGroupInfo({group}) {
     const [groupData, setGroupData] = useState(
        {initData}
     );
+
+    const [error, setError] = useState('');
     
-    const history = useHistory();
-
-    async function handleSubmit(evt) {
-        evt.preventDefault();
-        
-        await groupAPI.updateGroup(groupData, id);
-        window.location.reload()
-        // history.push(`/${id}`)
-
-    }
-
     function handleChange(evt) {
         const newGroupData= { ...groupData, [evt.target.name]: evt.target.value };
         setGroupData(newGroupData);
+        setError("No errors")
       }
+
+    async function handleSubmit(evt) {
+        evt.preventDefault();
+        try {
+            const update = await groupAPI.updateGroup(groupData, id);
+            window.location.reload()
+
+        } catch {
+            setError("This is an error");
+        }
+        
+
+    }
+
     
 
     return(
         <>
         <h1>New Video Form</h1>
-        <h3>{thisGroupYear}</h3>
         <form onSubmit={handleSubmit}>
             <div>
                 Year: 
@@ -59,6 +63,7 @@ export default function UpdateGroupInfo({group}) {
             </div>
             <button type="submit">ADD GROUP</button>
         </form>
+        <p>{error}</p>
 
         </>
     )
