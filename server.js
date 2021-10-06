@@ -1,4 +1,6 @@
 const express = require('express');
+const authRouter = require('./routers/authRouter');
+const errorController = require('./controllers/errorController');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -10,8 +12,10 @@ require('./config/database');
 
 const app = express();
 
+app.use(express.urlencoded({extended: true}));
 app.use(logger('dev'));
 app.use(express.json());
+
 
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder

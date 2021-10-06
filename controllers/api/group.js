@@ -14,8 +14,21 @@ module.exports = {
 }
 
 async function create(req, res) {
-  const group = await Group.create(req.body);
-  res.json(group)
+  try {
+    const findGroup = await Group.findOne({name: req.body.name})
+    if (findGroup) {
+      console.log(`${findGroup} already exists`)
+      const newGroup = await Group.create(req.body);
+      res.json(newGroup)
+  } else {
+    const newGroup = await Group.create(req.body);
+      res.json(newGroup)
+  }
+    } catch {
+      res.status(400).json('Bad Credentials');
+      console.log("catch")
+    }
+  
   
 }
 
@@ -34,20 +47,20 @@ async function yearDetail(req, res) {
 }
 
 async function updateOne(req, res) {
+  // Find the group Id to Update
   const group = await Group.findOne( {_id: req.params.id} );
-  // console.log(group.years)
+  // Find the Year array to push to 
   const findSameYear = group.years.find(y => y.year === req.body.year)
-  const findSameVideo = group.years.find(y => y.videoUrl === req.body.videoUrl)
+  // If the year already exists, push only the video into that year
   if (findSameYear && findSameYear.year === req.body.year) {
-      console.log(findSameYear.videoUrl)
-      console.log("Same Year Different Video")
-      findSameYear.videoUrl.push(req.body.videoUrl)
-    } else if (findSameYear && findSameYear.year === req.body.year) {
-    // console.log("Video already uploaded to Same Year")
+    findSameYear.videoUrl.push(req.body.videoUrl);
+    // If year doesn't exist yet, push the year data into the group
   } else {
     group.years.push(req.body)
-
   }
-  group.save();
+  group.save(function (err) {
+    console.log(err)
+  });
+  console.log(findSameYear)
   res.json(group);
-}
+  }

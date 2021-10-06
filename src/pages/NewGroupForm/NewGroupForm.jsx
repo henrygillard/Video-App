@@ -2,33 +2,35 @@ import { useState } from "react"
 import { useHistory } from "react-router";
 import * as groupAPI from "../../utilities/groups-api"
 
-export default function NewGroupForm({groups}) {
+export default function NewGroupForm({groups, setGroups}) {
 
-    const initData = {
-       name: "",
-       category: "",
-       videoUrl: "",
-    }
-
-    const [groupData, setGroupData] = useState([{
+    const [groupData, setGroupData] = useState({
         name: "",
        category: "",
        videoUrl: "",
-    }]);
-    
-    const history = useHistory();
+    });
 
-    async function handleSubmit(evt) {
-        evt.preventDefault();
-        await groupAPI.create(groupData);
-        history.push('/')
-
-    }
+    const [error, setError] = useState('');
 
     function handleChange(evt) {
         const newGroupData= { ...groupData, [evt.target.name]: evt.target.value };
         setGroupData(newGroupData);
+        setError("");
       }
+
+    async function handleSubmit(evt) {
+        evt.preventDefault();
+        try {
+           const newGroup = await groupAPI.create(groupData);
+           setGroups([...groups, newGroup]);
+            
+        } catch {
+            console.log("group already exists")
+            setError("Group Already Exists")
+        }
+
+    }
+
     
 
     return(
@@ -48,7 +50,7 @@ export default function NewGroupForm({groups}) {
                 Category: 
                 <select
                 name="category"
-                value={groupData.category.name}
+                value={groupData.category}
                 required
                 onChange={handleChange}
                 >
@@ -69,6 +71,7 @@ export default function NewGroupForm({groups}) {
             </div>
             <button type="submit">ADD GROUP</button>
         </form>
+        <p>{error}</p>
 
         </>
     )
