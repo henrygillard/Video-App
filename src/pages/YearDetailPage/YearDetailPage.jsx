@@ -2,6 +2,7 @@ import { useParams } from "react-router"
 import { useState, useEffect } from "react";
 import VideoList from "../../components/VideoList/VideoList";
 import * as groupsAPI from "../../utilities/groups-api";
+import { Link } from "react-router-dom";
 
 export default function YearDetailPage({groups}) {
 
@@ -25,6 +26,7 @@ export default function YearDetailPage({groups}) {
 
     return(
         <>
+        <Link to={`/${id}`}><h3>Back to {thisGroup && thisGroup.name}</h3></Link>
         <h2>{thisGroup && thisGroup.name} - {thisGroup && year.year}</h2>
         {thisGroup && 
         <VideoList group={thisGroup} year={year}/>

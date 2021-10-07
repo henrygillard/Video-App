@@ -13,6 +13,7 @@ export default function UpdateGroupInfo({group, setGroup}) {
     );
 
     const [error, setError] = useState('');
+    const [selected, setSelected] = useState(false);
     
     function handleChange(evt) {
         const newGroupData= { ...groupData, [evt.target.name]: evt.target.value };
@@ -27,7 +28,7 @@ export default function UpdateGroupInfo({group, setGroup}) {
             setGroup(update);
 
         } catch {
-            setError("This Video has already been submitted");
+            setError("This Video has already been submitted!");
         }
         
 
@@ -37,7 +38,8 @@ export default function UpdateGroupInfo({group, setGroup}) {
 
     return(
         <>
-        <h1>New Video Form</h1>
+        <h3 onClick={(evt) => setSelected(prevSelected => !prevSelected)}>Upload a New Video for {group && group.name}</h3>
+        {selected ? 
         <form onSubmit={handleSubmit}>
             <div>
                 Year: 
@@ -50,7 +52,6 @@ export default function UpdateGroupInfo({group, setGroup}) {
                 
                 
             </div>
-            
             <div>
                 Video URL: 
                 <input
@@ -61,8 +62,9 @@ export default function UpdateGroupInfo({group, setGroup}) {
                 >
                 </input>
             </div>
-            <button type="submit">ADD GROUP</button>
+            <button type="submit">ADD VIDEO</button>
         </form>
+        : <div></div>}
         <p>{error}</p>
 
         </>

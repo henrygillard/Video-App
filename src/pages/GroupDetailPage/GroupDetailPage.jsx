@@ -1,9 +1,10 @@
-import { Link, useParams } from "react-router-dom"
+import {  useParams } from "react-router-dom"
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import YearCard from "../../components/YearCard/YearCard";
 import * as groupsAPI from "../../utilities/groups-api"
 import UpdateGroupInfo from "../UpdateGroupInfo/UpdateGroupInfo";
+import "./GroupDetailPage.css"
 
 export default function GroupDetailPage({groups}) {
     
@@ -24,11 +25,13 @@ export default function GroupDetailPage({groups}) {
     // const years = thisGroup.years.map(y => <YearCard key={y.year} year={y} group={thisGroup}/>)
     
     return(
-        <div>
-            <h1> {thisGroup && thisGroup.name} detail page</h1>
-            <h3>Circuit - {thisGroup && thisGroup.category}</h3>
+        <div className="group-detail-page">
+            <h1> {thisGroup && thisGroup.name}</h1>
+            <h1>Circuit : {thisGroup && thisGroup.category}</h1>
             <UpdateGroupInfo group={thisGroup} setGroup={setThisGroup}/>
-            <ReactPlayer url={thisGroup && thisGroup.videoUrl}></ReactPlayer>
+            <div className="video-container">
+            <ReactPlayer width="100%" height="100%" url={thisGroup && thisGroup.videoUrl}></ReactPlayer>
+            </div>
             <h3>Years</h3>
             { thisGroup && thisGroup.years.map((y)  => <YearCard key={y.year} year={y} group={thisGroup}/>)}
             
