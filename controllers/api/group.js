@@ -52,22 +52,31 @@ async function updateOne(req, res) {
   // Find the Year array to push to 
   const findSameYear = group.years.find(y => y.year === req.body.year)
   // If the year already exists, push only the video into that year
+  try {
   if (findSameYear) {
     const videoArr = [...findSameYear.videoUrl];
     console.log(`New video for ${findSameYear.year}`)
     findSameYear.videoUrl.push(req.body.videoUrl);
+    group.save()
+    // res.json(group)
     
     if (videoArr.includes(req.body.videoUrl)) {
       console.log(`${req.body.videoUrl} is already in ${videoArr}`);
       const deleteVideo = findSameYear.videoUrl.indexOf(req.body.videoUrl);
       if (deleteVideo > -1) {
         findSameYear.videoUrl.splice(deleteVideo, 1);
+        res.json(error)
       }
     }
   } else {
     console.log("New Year and New Video")
     group.years.push(req.body);
+    group.save()
+    res.json(group)
   }
-  group.save();
-  res.json(group);
-  }
+} catch {
+  res.status(400).json('Bad Credentials');
+  console.log("catch")
+}
+
+} 

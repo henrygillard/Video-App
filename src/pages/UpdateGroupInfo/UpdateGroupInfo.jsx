@@ -25,10 +25,9 @@ export default function UpdateGroupInfo({group, setGroup}) {
         try {
             const update = await groupAPI.updateGroup(groupData, id);
             setGroup(update);
-            // window.location.reload()
 
         } catch {
-            setError("This is an error");
+            setError("This Video has already been submitted");
         }
         
 

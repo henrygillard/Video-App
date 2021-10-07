@@ -6,7 +6,7 @@ export default function NewGroupForm({groups, setGroups}) {
 
     const [groupData, setGroupData] = useState({
         name: "",
-       category: "",
+       category: "DCI",
        videoUrl: "",
     });
 
