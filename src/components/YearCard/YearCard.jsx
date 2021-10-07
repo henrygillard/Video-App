@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import "./YearCard.css"
 
 export default function YearCard({ year, group, key }) {
     return(
         <> <Link to={`/${group._id}/${year._id}`}>
-        <div>{year.year}</div>
+        <div className="year-card">{year.year}</div>
         </Link>
         </>
     )

@@ -9,7 +9,7 @@ module.exports = {
   };
 
   async function index(req, res) {
-    const groups = await Group.find({}).populate("category").exec();
+    const groups = await Group.find({}).sort("name").populate("category").exec();
     res.json(groups);
 }
 
@@ -40,8 +40,6 @@ async function detail(req, res) {
 async function yearDetail(req, res) {
   const group = await Group.findOne({
     _id: req.params.id,
-    
-
   });
   res.json(group);
 }
@@ -59,7 +57,6 @@ async function updateOne(req, res) {
     findSameYear.videoUrl.push(req.body.videoUrl);
     group.save()
     // window.location.reload(false)
-    
     if (videoArr.includes(req.body.videoUrl)) {
       console.log(`${req.body.videoUrl} is already in ${videoArr}`);
       const deleteVideo = findSameYear.videoUrl.indexOf(req.body.videoUrl);

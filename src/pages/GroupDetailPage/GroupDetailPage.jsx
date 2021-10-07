@@ -30,7 +30,7 @@ export default function GroupDetailPage({groups}) {
             <h1>Circuit : {thisGroup && thisGroup.category}</h1>
             <UpdateGroupInfo group={thisGroup} setGroup={setThisGroup}/>
             <div className="video-container">
-            <ReactPlayer width="100%" height="100%" url={thisGroup && thisGroup.videoUrl}></ReactPlayer>
+            <ReactPlayer width="100%" height="100%" className='react-player' url={thisGroup && thisGroup.videoUrl}></ReactPlayer>
             </div>
             <h3>Years</h3>
             { thisGroup && thisGroup.years.map((y)  => <YearCard key={y.year} year={y} group={thisGroup}/>)}

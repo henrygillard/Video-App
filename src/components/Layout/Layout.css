@@ -9,4 +9,9 @@ main {
     h1 {
         font-size: 2rem;
     };
+
+    .react-player {
+        width: 100%;
+        height: 100%;
+    }
 }
