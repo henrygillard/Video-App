@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useHistory, useParams } from "react-router";
 import * as groupAPI from "../../utilities/groups-api"
 
-export default function UpdateGroupInfo({group}) {
+export default function UpdateGroupInfo({group, setGroup}) {
     const {id} = useParams();
     const initData = {
       group
@@ -24,7 +24,8 @@ export default function UpdateGroupInfo({group}) {
         evt.preventDefault();
         try {
             const update = await groupAPI.updateGroup(groupData, id);
-            window.location.reload()
+            setGroup(update);
+            // window.location.reload()
 
         } catch {
             setError("This is an error");
