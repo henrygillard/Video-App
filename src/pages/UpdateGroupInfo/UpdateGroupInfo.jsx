@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useHistory, useParams } from "react-router";
 import * as groupAPI from "../../utilities/groups-api"
+import "./UpdateGroupInfo.css"
 
 export default function UpdateGroupInfo({group, setGroup}) {
     const {id} = useParams();
@@ -47,11 +48,11 @@ export default function UpdateGroupInfo({group, setGroup}) {
 
     return(
         <>
-        <h3 onClick={(evt) => setSelected(prevSelected => !prevSelected)}>Upload a New Video for {group && group.name}</h3>
+        <h3 style={{ backgroundColor: selected ? "#ab0101" : ""}}className="upload-button" onClick={(evt) => setSelected(prevSelected => !prevSelected)}>Upload a New Video for {group && group.name}</h3>
         {selected ? 
-        <form onSubmit={handleSubmit}>
+        <form className="submit-form" onSubmit={handleSubmit}>
             <div>
-                <label>Group: {group.name}</label>
+                <label>Group: <br />{group.name}</label>
             </div>
             <div>
                 <label>Year: </label>

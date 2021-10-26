@@ -56,7 +56,7 @@ async function updateOne(req, res) {
     console.log(`New video for ${findSameYear.year}`)
     findSameYear.videoUrl.push(req.body.videoUrl);
     group.save()
-    // window.location.reload(false)
+    // window.location.reload(false)f
     if (videoArr.includes(req.body.videoUrl)) {
       console.log(`${req.body.videoUrl} is already in ${videoArr}`);
       const deleteVideo = findSameYear.videoUrl.indexOf(req.body.videoUrl);

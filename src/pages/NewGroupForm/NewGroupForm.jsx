@@ -34,7 +34,7 @@ export default function NewGroupForm({groups, setGroups}) {
     
     return(
         <>
-        <h1 onClick={(evt) => setSelected(prevSelected => !prevSelected)}>{selected ? `- Add a Group` : `+ Add a Group`}</h1>
+        <h1 onClick={(evt) => setSelected(prevSelected => !prevSelected)}style={{ backgroundColor: selected ? "black" : ""}}>{selected ? `- Add a Group` : `+ Add a Group`}</h1>
         {selected ? 
         <form className="submit-form" onSubmit={handleSubmit}>
             <div>

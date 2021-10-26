@@ -36,6 +36,8 @@ const Year = require('./models/year');
         { name: "Pacific Crest", category: "DCI", videoUrl: "https://www.youtube.com/watch?v=fCJt3k59-a8&ab_channel=DrumCorpsInternational" },
         { name: "RCC Indoor Percussion", category: "WGI", videoUrl: "https://www.youtube.com/watch?v=ArTgxmE5sco&ab_channel=RCCIndoorPercussion" },
         { name: "Connecticut Hurricanes", category: "DCA", videoUrl: "https://www.youtube.com/watch?v=SnwO9Y_pKkc&ab_channel=brianlathamct44" },
+        { name: "Chino Hills HS", category: "Marching Band", videoUrl: "https://www.youtube.com/watch?v=KnPy-dxejfk&ab_channel=papasteveb" },
+        { name: "Arcadia HS", category: "Scholastic/Indoor", videoUrl: "https://www.youtube.com/watch?v=GQdW1zc3Tdk&ab_channel=AlessandroSestito" },
     ]);
 
     console.log(groups);
