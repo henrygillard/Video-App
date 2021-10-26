@@ -4,6 +4,7 @@ import GroupCard from '../GroupCard/GroupCard';
 import * as groupsAPI from "../../utilities/groups-api"
 import NewGroupForm from '../../pages/NewGroupForm/NewGroupForm';
 import './GroupList.css'
+import SearchList from"../../components/SearchList/SearchList";
 
 export default function CatList({groups, setGroups}) {
 
@@ -16,20 +17,43 @@ export default function CatList({groups, setGroups}) {
       const [allSel, setAllSel] = useState(false)
       const [mBandSel, setMBandSel] = useState(false)
       const [scIndoorSel, setScIndoorSel] = useState(false)
-   
-    const allGroups = groups.map(g => <Link to={`/${g._id}`}><div className="group-name">{g.name}</div></Link>)    
+      const [searchField, setSearchField] = useState("");
+
+      
+      function handleChange(evt) {
+          evt.preventDefault();
+          setSearchField(evt.target.value);
+        }
+        
+        const filteredGroup = groups.filter(g => {
+            return(
+            g.name.toLowerCase()
+            .includes(searchField.toLowerCase()
+            )
+            )}
+
+        );
+    
+    const allGroups = filteredGroup.map(g => <Link to={`/${g._id}`}><div className="group-name">{g.name}</div></Link>)    
     const dci = groups.filter(cat => cat.category === "DCI")
     const wgi = groups.filter(cat => cat.category === "WGI")
     const dca = groups.filter(cat => cat.category === "DCA")
     const mBand = groups.filter(cat => cat.category === "Marching Band")
     const scIndoor = groups.filter(cat => cat.category === "Scholastic/Indoor")
+    
+    
 
   
     return(
         <div className="main-nav">
             <h1 style={{ backgroundColor: allSel ? "black" : ""}}onClick={(evt) => setAllSel(prevAllSel => !prevAllSel)}>All Groups</h1>
             {allSel ? 
-           allGroups
+            <div>
+            Search All Groups: <br />
+            <input type="search" placeholder="Search by Name" onChange={handleChange}
+            />
+            {allGroups}
+        </div>
             : <div></div>}
             <h1 style={{ backgroundColor: dciSel ? "black" : ""}}onClick={(evt) => setdciSel(prevDciSel => !prevDciSel) } >DCI</h1>
         
