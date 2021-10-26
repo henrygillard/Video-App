@@ -3,5 +3,10 @@
         background-color: grey;
         border-radius: 0.5rem;
         color: white;
+        margin: 1.5rem 0.5rem;
+    }
+
+    .group-name {
+        margin: 0.5rem 0;
     }
 }
