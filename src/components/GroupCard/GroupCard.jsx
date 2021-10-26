@@ -4,7 +4,7 @@ import "./GroupCard.css"
 export default function GroupCard({group, selected, setSelected}) {
     
     return(
-        <>
+        
         <Link to={`/${group._id}`}>
         {selected ? 
             <div>
@@ -12,6 +12,6 @@ export default function GroupCard({group, selected, setSelected}) {
             </div>
         : <p></p>}
         </Link>
-        </>
+        
     )
 }

@@ -22,7 +22,7 @@ export default function CatList({groups, setGroups}) {
 
   
     return(
-        <div>
+        <div className="main-nav">
             <h1 onClick={(evt) => setAllSel(prevAllSel => !prevAllSel)}>All Groups</h1>
             {allSel ? 
             allGroups

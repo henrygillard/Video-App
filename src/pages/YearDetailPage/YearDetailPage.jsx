@@ -25,12 +25,13 @@ export default function YearDetailPage({groups}) {
     }
 
     return(
-        <>
+        <div>
         <Link to={`/${id}`}><h3>Back to {thisGroup && thisGroup.name}</h3></Link>
         <h2>{thisGroup && thisGroup.name} - {thisGroup && year.year}</h2>
         {thisGroup && 
         <VideoList group={thisGroup} year={year}/>
         }
-        </>
+        </div>
+        
     )
 }

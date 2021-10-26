@@ -1,0 +1,7 @@
+@media screen and (max-width:600px) {
+    .main-nav h1 {
+        background-color: grey;
+        border-radius: 0.5rem;
+        color: white;
+    }
+}

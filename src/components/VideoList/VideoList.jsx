@@ -7,11 +7,11 @@ export default function VideoList({group, year}) {
         url={v}></ReactPlayer >)
 
     return(
-        <>
+        
         <div className="video-list">
             {videos}
         </div>
-        </>
+        
     )
     }
 

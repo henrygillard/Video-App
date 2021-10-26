@@ -29,7 +29,7 @@ export default function NewGroupForm({groups, setGroups}) {
         } catch {
             console.log("group already exists")
             setError("Group Already Exists!")
-        }
+    }
     }
 
     return(
