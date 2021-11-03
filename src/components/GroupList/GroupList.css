@@ -7,6 +7,19 @@
     }
 
     .group-name {
-        margin: 0.5rem 0;
+        padding: 0.3rem;
+    }
+
+    .all-groups {
+    }
+
+
+    
+   
+    .all-groups-active  {
+        
+    }
+
+    .all-groups {
     }
 }

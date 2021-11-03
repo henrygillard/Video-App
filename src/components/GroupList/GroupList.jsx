@@ -24,16 +24,21 @@ export default function CatList({groups, setGroups}) {
           evt.preventDefault();
           setSearchField(evt.target.value);
         }
-        
         const filteredGroup = groups.filter(g => {
             return(
-            g.name.toLowerCase()
-            .includes(searchField.toLowerCase()
-            )
-            )}
-
-        );
-    
+                g.name.toLowerCase()
+                .includes(searchField.toLowerCase()
+            
+                )
+                )}
+                
+                );
+                
+        function checkGroups() {
+            if (!filteredGroup) {
+                return false
+            }
+        }
     const allGroups = filteredGroup.map(g => <Link to={`/${g._id}`}><div className="group-name">{g.name}</div></Link>)    
     const dci = groups.filter(cat => cat.category === "DCI")
     const wgi = groups.filter(cat => cat.category === "WGI")
@@ -48,11 +53,13 @@ export default function CatList({groups, setGroups}) {
         <div className="main-nav">
             <h1 style={{ backgroundColor: allSel ? "black" : ""}}onClick={(evt) => setAllSel(prevAllSel => !prevAllSel)}>All Groups</h1>
             {allSel ? 
-            <div>
+            <div className={allSel ? "all-groups-active" : "all-groups"}>
             Search All Groups: <br />
             <input type="search" placeholder="Search by Name" onChange={handleChange}
             />
             {allGroups}
+            {checkGroups()}
+            
         </div>
             : <div></div>}
             <h1 style={{ backgroundColor: dciSel ? "black" : ""}}onClick={(evt) => setdciSel(prevDciSel => !prevDciSel) } >DCI</h1>

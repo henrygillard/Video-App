@@ -6,7 +6,7 @@ export default function NewGroupForm({groups, setGroups}) {
 
     const [groupData, setGroupData] = useState({
         name: "",
-        category: "DCI",
+        category: "",
         videoUrl: "",
     });
     const [selected, setSelected] = useState(false)
@@ -62,6 +62,7 @@ export default function NewGroupForm({groups, setGroups}) {
                 <option value="WGI">WGI</option>
                 <option value="DCA">DCA</option>
                 <option value="Marching Band">Scholastic/Marching Band</option>
+                <option value="Scholastic/Indoor">Scholastic/Indoor</option>
                 </select>
             </div>
             <div>
