@@ -6,7 +6,15 @@ import * as groupsAPI from "../../utilities/groups-api"
 import UpdateGroupInfo from "../UpdateGroupInfo/UpdateGroupInfo";
 import "./GroupDetailPage.css"
 
-export default function GroupDetailPage({groups}) {
+export default function GroupDetailPage({setGroups}) {
+
+    useEffect(function() {
+        async function getGroups() {
+          const groups = await groupsAPI.getAll();
+          setGroups(groups);
+        }
+        getGroups();
+      }, []);
     
     let { id } = useParams();
 

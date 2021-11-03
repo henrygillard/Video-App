@@ -9,6 +9,7 @@ import * as usersAPI from '../../utilities/users-api';
 import NavBar from '../../components/NavBar/NavBar';
 import YearDetailPage from '../YearDetailPage/YearDetailPage';
 import { getUser } from '../../utilities/users-service';
+import AuthPage from '../AuthPage/AuthPage';
 
 
 
@@ -19,14 +20,7 @@ function App() {
 
   
 
-  useEffect(function() {
-    async function getGroups() {
-      const groups = await groupsAPI.getAll();
-      setGroups(groups);
-    }
-    getGroups();
-  }, []);
-
+  
 
  
 
@@ -35,20 +29,23 @@ function App() {
     <Layout>
       <NavBar user={user} setUser={setUser}/>
         <Switch>
-        <Route exact path="/">
+        <Route exact path="/groups">
       <GroupList groups={groups} 
       setGroups={setGroups} 
       selected={selected} 
       setSelected={setSelected}
       user={user}/>
       </Route>
-      <Route exact path="/:id">
-        <GroupDetailPage  />
+      <Route exact path="/groups/:id">
+        <GroupDetailPage  setGroups={setGroups}/>
       </Route>
-      <Route exact path="/:id/:yId">
+      <Route exact path="/groups/:id/:yId">
         <YearDetailPage groups={groups} user={user} />
       </Route>
       </Switch>
+      <Route path="/login">
+        <AuthPage user={user} setUser={setUser} />
+      </Route>
     </Layout>
   );
 }

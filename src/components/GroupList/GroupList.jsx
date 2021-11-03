@@ -8,6 +8,14 @@ import SearchList from"../../components/SearchList/SearchList";
 
 export default function CatList({groups, setGroups}) {
 
+    useEffect(function() {
+        async function getGroups() {
+          const groups = await groupsAPI.getAll();
+          setGroups(groups);
+        }
+        getGroups();
+      }, []);
+    
    
 
 

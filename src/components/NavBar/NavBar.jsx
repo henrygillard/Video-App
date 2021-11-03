@@ -29,13 +29,12 @@ export default function NavBar({user, setUser}) {
             </div>
             : 
             <div>
-                <h3 onClick={() => setShowLogin(!showLogin)}>{showLogin ? 'SIGN UP' : 'LOG IN'}</h3>
-                {showLogin ? <LoginForm setUser={setUser} /> : <SignUpForm setUser={setUser} />}
+                <Link className="links" to="/login">Sign Up/Log In</Link> 
             </div>
             }
             <h1>Marching Arts Database</h1>
             <img src="https://i.imgur.com/lm5NWj5.png" />
-            <Link className="link" to="/"><h3>Home</h3></Link>
+            <Link className="link" to="/groups"><h3>Home</h3></Link>
         </header>
     )
 }

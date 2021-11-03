@@ -5,7 +5,7 @@ export default function GroupCard({group, selected, setSelected}) {
     
     return(
         
-        <Link to={`/${group._id}`}>
+        <Link to={`/groups/${group._id}`}>
         {selected ? 
             <div className="group-name">
                 {group.name}
