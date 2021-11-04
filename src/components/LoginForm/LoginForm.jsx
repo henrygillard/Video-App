@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
+import "./LoginForm.css"
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -29,13 +30,40 @@ export default function LoginForm({ setUser }) {
 
   return (
     <div>
-      <div className="form-container" onSubmit={handleSubmit}>
-        <form autoComplete="off" >
-          <label>Email</label>
+      <div  onSubmit={handleSubmit}>
+          <h3>Log In</h3>
+        <form className="form-container" autoComplete="off" >
+        <label className="field field_v3">
+                <input className="field__input" 
+                    placeholder="e.g. melnik909@ya.ru"
+                    type="email" 
+                    name="email" 
+                    value={credentials.email} 
+                    onChange={handleChange} 
+                    required 
+                />
+                <span className="field__label-wrap">
+                    <span className="field__label">E-mail</span>
+                </span>
+            </label>
+            <label class="field field_v2">
+                <input class="field__input" 
+                    placeholder="e.g. Melnikov"
+                    type="password" 
+                    name="password" 
+                    value={credentials.password} 
+                    onChange={handleChange} 
+                    required 
+                    />
+                <span class="field__label-wrap">
+                <span class="field__label">Password</span>
+                </span>
+            </label>  
+          {/* <label>Email</label>
           <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
           <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
+          <input type="password" name="password" value={credentials.password} onChange={handleChange} required /> */}
+          <button className="submit" type="submit">LOG IN</button>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>
