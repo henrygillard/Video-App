@@ -44,13 +44,14 @@ async function detail(req, res) {
   const group = await Group.findById(req.params.id)
     .populate("user")
     .exec();
+  group.years.sort()
   res.json(group);
 }
 
 async function yearDetail(req, res) {
   const group = await Group.findOne({
     _id: req.params.id,
-  });
+  })
   res.json(group);
 }
 

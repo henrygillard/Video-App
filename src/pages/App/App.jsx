@@ -42,10 +42,11 @@ function App() {
       <Route exact path="/groups/:id/:yId">
         <YearDetailPage groups={groups} user={user} />
       </Route>
-      </Switch>
-      <Route path="/login">
+      <Route exact path="/login">
         <AuthPage user={user} setUser={setUser} />
       </Route>
+      <Redirect to ="/groups" />
+      </Switch>
     </Layout>
   );
 }

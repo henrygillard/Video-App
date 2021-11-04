@@ -42,8 +42,8 @@ export default function NewGroupForm({groups, setGroups, user}) {
         {selected  ? 
         <form className="submit-form" onSubmit={handleSubmit}>
             <div>
-            <p style={{color:"red"}}>{error}</p>
-            <p style={{color:"green"}}>{message}</p>
+            <p className="error-message">{error}</p>
+            <p className="success-message">{message}</p>
                 Group Name: 
                 <br/>
                 <input

@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router";
 import * as groupAPI from "../../utilities/groups-api"
 import "./UpdateGroupInfo.css"
 
-export default function UpdateGroupInfo({group, setGroup}) {
+export default function UpdateGroupInfo({group, setGroup, user}) {
     const {id} = useParams();
     const initData = {
       group
@@ -27,6 +27,7 @@ export default function UpdateGroupInfo({group, setGroup}) {
 
 
     const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
     const [selected, setSelected] = useState(false);
     
     function handleChange(evt) {
@@ -37,18 +38,24 @@ export default function UpdateGroupInfo({group, setGroup}) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        try {
-            const update = await groupAPI.updateGroup(groupData, id);
-            setGroup(update);
-
-        } catch {
-            setError("This Video has already been submitted!");
+        if (user) {
+            try {
+                const update = await groupAPI.updateGroup(groupData, id);
+                setGroup(update);
+                setMessage("Video uploaded successfully!")
+            } catch {
+                setError("This Video has already been submitted!");
+            }
+        } else {
+            setError("Please log in to upload videos")
         }
     }
-
+    
     return(
         <>
         <h3 style={{ backgroundColor: selected ? "#ab0101" : ""}}className="upload-button" onClick={(evt) => setSelected(prevSelected => !prevSelected)}>Upload a New Video for {group && group.name}</h3>
+        <p className="error-message">{error}</p>
+        <p className="success-message">{message}</p>
         {selected ? 
         <form className="submit-form" onSubmit={handleSubmit}>
             <div>
@@ -84,8 +91,8 @@ export default function UpdateGroupInfo({group, setGroup}) {
             </div>
             <button type="submit">ADD VIDEO</button>
         </form>
-        : <div></div>}
-        <p>{error}</p>
+        : <div></div>
+        }
 
         </>
     )
