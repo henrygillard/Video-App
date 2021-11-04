@@ -37,7 +37,7 @@ function App() {
       user={user}/>
       </Route>
       <Route exact path="/groups/:id">
-        <GroupDetailPage  setGroups={setGroups}/>
+        <GroupDetailPage  setGroups={setGroups} user={user}/>
       </Route>
       <Route exact path="/groups/:id/:yId">
         <YearDetailPage groups={groups} user={user} />

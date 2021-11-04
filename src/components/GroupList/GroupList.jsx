@@ -6,7 +6,7 @@ import NewGroupForm from '../../pages/NewGroupForm/NewGroupForm';
 import './GroupList.css'
 import SearchList from"../../components/SearchList/SearchList";
 
-export default function CatList({groups, setGroups}) {
+export default function CatList({groups, setGroups, user}) {
 
     useEffect(function() {
         async function getGroups() {
@@ -87,8 +87,8 @@ export default function CatList({groups, setGroups}) {
             <h1 style={{ backgroundColor: scIndoorSel ? "black" : ""}}onClick={(evt) => setScIndoorSel(prevscIndoorSel => !prevscIndoorSel) }>Scholastic/Indoor</h1>
             {scIndoor.map((g) => <GroupCard className="scholastic-indoor-groups" key={g.name} group={g} selected={scIndoorSel}/>
                 )}
-            <NewGroupForm groups={groups} setGroups={setGroups}/>
-
+            <NewGroupForm groups={groups} setGroups={setGroups} user={user}/>
+            
 
                 
         </div>

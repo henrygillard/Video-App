@@ -6,12 +6,11 @@ import * as groupsAPI from "../../utilities/groups-api"
 import UpdateGroupInfo from "../UpdateGroupInfo/UpdateGroupInfo";
 import "./GroupDetailPage.css"
 
-export default function GroupDetailPage({setGroups}) {
+export default function GroupDetailPage({setGroups, user}) {
 
     useEffect(function() {
         async function getGroups() {
           const groups = await groupsAPI.getAll();
-          console.log(groups);
           setGroups(groups);
         }
         getGroups();
@@ -24,7 +23,6 @@ export default function GroupDetailPage({setGroups}) {
     useEffect(function () {
         async function getGroup() {
             const currentGroup = await groupsAPI.getGroup(id);
-            console.log(currentGroup);
             setThisGroup(currentGroup);
         }
         getGroup();

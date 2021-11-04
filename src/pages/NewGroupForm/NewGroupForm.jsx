@@ -2,11 +2,11 @@ import { useState } from "react"
 import * as groupAPI from "../../utilities/groups-api"
 import "./NewGroupForm.css"
 
-export default function NewGroupForm({groups, setGroups}) {
+export default function NewGroupForm({groups, setGroups, user}) {
 
     const [groupData, setGroupData] = useState({
         name: "",
-        category: "",
+        category: "DCI",
         videoUrl: "",
     });
     const [selected, setSelected] = useState(false)
@@ -21,21 +21,25 @@ export default function NewGroupForm({groups, setGroups}) {
 
     async function handleSubmit(evt) {
         evt.preventDefault();
+        if(user){
         try {
            const newGroup = await groupAPI.create(groupData);
            setGroups([...groups, newGroup]);
            setMessage("Group Added Successfully!")
-            
+
         } catch {
-            console.log("group already exists")
-            setError("Group Already Exists!")
+                console.log("group already exists")
+                setError("Group Already Exists!")
         }
+    } else {
+        setError("Please log in to create new groups!")
+    }
     }
     
     return(
         <>
         <h1 onClick={(evt) => setSelected(prevSelected => !prevSelected)}style={{ backgroundColor: selected ? "black" : ""}}>{selected ? `- Add a Group` : `+ Add a Group`}</h1>
-        {selected ? 
+        {selected  ? 
         <form className="submit-form" onSubmit={handleSubmit}>
             <div>
             <p style={{color:"red"}}>{error}</p>
@@ -78,7 +82,8 @@ export default function NewGroupForm({groups, setGroups}) {
             </div>
             <button type="submit">+ ADD GROUP</button>
         </form>
-        : <div></div>}
+        : <div>
+        </div>}
         </>
 
     )
