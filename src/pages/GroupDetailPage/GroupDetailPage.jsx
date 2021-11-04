@@ -11,6 +11,7 @@ export default function GroupDetailPage({setGroups}) {
     useEffect(function() {
         async function getGroups() {
           const groups = await groupsAPI.getAll();
+          console.log(groups);
           setGroups(groups);
         }
         getGroups();
@@ -23,11 +24,11 @@ export default function GroupDetailPage({setGroups}) {
     useEffect(function () {
         async function getGroup() {
             const currentGroup = await groupsAPI.getGroup(id);
+            console.log(currentGroup);
             setThisGroup(currentGroup);
         }
         getGroup();
     }, [id]);
-
 
     // let group = groups.find(g => g.name === id)
     // const years = thisGroup.years.map(y => <YearCard key={y.year} year={y} group={thisGroup}/>)
@@ -35,6 +36,7 @@ export default function GroupDetailPage({setGroups}) {
     return(
         <div className="group-detail-page">
             <h1> {thisGroup && thisGroup.name}</h1>
+            <h3>Created by {thisGroup && thisGroup.user.name}</h3>
             <h1>Circuit : {thisGroup && thisGroup.category}</h1>
             <UpdateGroupInfo group={thisGroup} setGroup={setThisGroup}/>
             <div className="video-container">

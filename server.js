@@ -13,6 +13,7 @@ const app = express();
 app.use(express.urlencoded({extended: true}));
 app.use(logger('dev'));
 app.use(express.json());
+app.use(require('./config/checkToken'));
 
 // Configure both serve-favicon & static middleware
 // to serve from the production 'build' folder
@@ -30,6 +31,7 @@ app.use('/api/groups', require('./routes/api/group'));
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
+
 
 // Configure to use port 3001 instead of 3000 during
 // development to avoid collision with React's dev server

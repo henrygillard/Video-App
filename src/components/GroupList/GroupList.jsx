@@ -47,7 +47,7 @@ export default function CatList({groups, setGroups}) {
                 return false
             }
         }
-    const allGroups = filteredGroup.map(g => <Link to={`/${g._id}`}><div className="group-name">{g.name}</div></Link>)    
+    const allGroups = filteredGroup.map(g => <Link to={`/groups/${g._id}`}><div className="group-name">{g.name}</div></Link>)    
     const dci = groups.filter(cat => cat.category === "DCI")
     const wgi = groups.filter(cat => cat.category === "WGI")
     const dca = groups.filter(cat => cat.category === "DCA")

@@ -9,7 +9,10 @@ module.exports = {
   };
 
   async function index(req, res) {
-    const groups = await Group.find({}).sort("name").populate("category").exec();
+    const groups = await Group.find({})
+      .populate('user')
+      .sort("createdAt")
+      .exec();
     res.json(groups);
 }
 
@@ -22,18 +25,25 @@ async function create(req, res) {
       console.log(`${findGroup.name} already exists`)
       // const newGroup = await Group.create(req.body);
       res.json(newGroup)
-  } else {
-    const newGroup = await Group.create(req.body);
+    } else {
+      req.body.user = req.user._id;
+      const newGroup = await Group.create(req.body);
+      console.log(newGroup);
+      console.log(req.user)
       res.json(newGroup)
   }
     } catch {
+      console.log(req.body)
+      console.log(req.user)
       res.status(400).json('Bad Credentials');
       console.log("catch")
     }
 }
 
 async function detail(req, res) {
-  const group = await Group.findById(req.params.id);
+  const group = await Group.findById(req.params.id)
+    .populate("user")
+    .exec();
   res.json(group);
 }
 

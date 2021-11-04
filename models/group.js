@@ -15,8 +15,11 @@ const groupSchema = new Schema({
         type: String,
         default: "DCI"
     }, 
-    videoUrl: [String]
-})
+    videoUrl: [String],
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+}, {
+    timestamps: true
+});
 
 
 module.exports = mongoose.model('Group', groupSchema);
