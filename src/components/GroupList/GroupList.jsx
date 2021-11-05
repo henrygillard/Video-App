@@ -47,7 +47,14 @@ export default function CatList({groups, setGroups, user}) {
                 return false
             }
         }
-    const allGroups = filteredGroup.map(g => <Link to={`/groups/${g._id}`}><div className="group-name">{g.name}</div></Link>)    
+    const allGroups = filteredGroup.map((g, idx) => 
+    <Link to={`/groups/${g._id}`} className="links">
+        <div 
+            style={idx % 2 ? {backgroundColor:"white"}: {backgroundColor:"#e8e4e4"} }
+            className="group-name">{g.name}
+        </div>
+    </Link>)    
+
     const dci = groups.filter(cat => cat.category === "DCI")
     const wgi = groups.filter(cat => cat.category === "WGI")
     const dca = groups.filter(cat => cat.category === "DCA")
@@ -61,31 +68,33 @@ export default function CatList({groups, setGroups, user}) {
         <div className="main-nav">
             <h1 style={{ backgroundColor: allSel ? "black" : ""}}onClick={(evt) => setAllSel(prevAllSel => !prevAllSel)}>All Groups</h1>
             {allSel ? 
-            <div className={allSel ? "all-groups-active" : "all-groups"}>
-            Search All Groups: <br />
-            <input type="search" placeholder="Search by Name" onChange={handleChange}
-            />
-            {allGroups}
-            {checkGroups()}
-            
-        </div>
+            <div className="all-groups">
+                <label className="field field_v3"> 
+                    <input className="field__input" type="search" placeholder="Search by Name" onChange={handleChange}/>
+                    <span className="field__label-wrap">
+                        <span className="field__label">Search All Groups</span>
+                    </span>
+                </label>
+                {allGroups}
+                {checkGroups()}
+            </div>
             : <div></div>}
             <h1 style={{ backgroundColor: dciSel ? "black" : ""}}onClick={(evt) => setdciSel(prevDciSel => !prevDciSel) } >DCI</h1>
         
-            {dci.map((g) => <GroupCard className="dci-groups" key={g.name} group={g} selected={dciSel}/>
+            {dci.map((g, idx) => <GroupCard className="dci-groups" key={g.name} idx={idx} group={g} selected={dciSel}/>
                 )}
             
             <h1 style={{ backgroundColor: wgiSel ? "black" : ""}}onClick={(evt) => setwgiSel(prevWgiSel => !prevWgiSel) }>WGI</h1>
-            {wgi.map((g) => <GroupCard className="wgi-groups"key={g.name} group={g} selected={wgiSel}/>
+            {wgi.map((g, idx) => <GroupCard className="wgi-groups" idx={idx} key={g.name} group={g} selected={wgiSel}/>
                 )}
             <h1 style={{ backgroundColor: dcaSel ? "black" : ""}}onClick={(evt) => setdcaSel(prevDcaSel => !prevDcaSel) }>DCA</h1>
-            {dca.map((g) => <GroupCard className="dca-groups" key={g.name} group={g} selected={dcaSel}/>
+            {dca.map((g, idx) => <GroupCard className="dca-groups" idx={idx} key={g.name} group={g} selected={dcaSel}/>
                 )}
             <h1 style={{ backgroundColor: mBandSel ? "black" : ""}}onClick={(evt) => setMBandSel(prevmBandSel => !prevmBandSel) }>Scholastic/Marching Band</h1>
-            {mBand.map((g) => <GroupCard className="marching-band-groups" key={g.name} group={g} selected={mBandSel}/>
+            {mBand.map((g, idx) => <GroupCard className="marching-band-groups" idx={idx} key={g.name} group={g} selected={mBandSel}/>
                 )}
             <h1 style={{ backgroundColor: scIndoorSel ? "black" : ""}}onClick={(evt) => setScIndoorSel(prevscIndoorSel => !prevscIndoorSel) }>Scholastic/Indoor</h1>
-            {scIndoor.map((g) => <GroupCard className="scholastic-indoor-groups" key={g.name} group={g} selected={scIndoorSel}/>
+            {scIndoor.map((g, idx) => <GroupCard className="scholastic-indoor-groups" idx={idx} key={g.name} group={g} selected={scIndoorSel}/>
                 )}
             <NewGroupForm groups={groups} setGroups={setGroups} user={user}/>
             

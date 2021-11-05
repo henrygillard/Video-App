@@ -31,4 +31,12 @@
         /* width: 15rem; */
     }
 
+    .category-field {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: start; */
+    }
+
+
+
 }

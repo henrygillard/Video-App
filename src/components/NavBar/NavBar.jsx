@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import * as userService from "../../utilities/users-service";
+import { GoogleLogout } from 'react-google-login';
 import LoginForm from "../LoginForm/LoginForm";
 import SignUpForm from "../SignUpForm/SignUpForm";
 import "./NavBar.css"
@@ -18,6 +19,8 @@ export default function NavBar({user, setUser}) {
         setUser(null);
     }
 
+    
+
       
     
     return(
@@ -25,6 +28,7 @@ export default function NavBar({user, setUser}) {
             { user ? 
             <div className="greeting">
                 <h3>Hello, {user.name}!</h3>
+                
                 <div onClick={handleLogOut}><Link to="/" className="links">Log Out</Link></div>
             </div>
             : 

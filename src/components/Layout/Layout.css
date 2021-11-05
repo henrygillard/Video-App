@@ -47,9 +47,12 @@ main {
             width: 100%;
             max-width: 480px;
             margin: auto;
-            padding: 1rem;
+            padding: 0.5rem;
     
-            display: grid;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            /* align-items: center; */
             grid-gap: 30px;
         }
     
@@ -231,6 +234,10 @@ main {
             color: white;
             padding: 0.5rem;
             border: none;
+        }
+
+        select {
+            border: solid thin #A81602;
         }
 
           

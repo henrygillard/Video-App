@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 import * as usersService from '../../utilities/users-service';
+import { useGoogleLogin } from "react-google-login";
 import "./LoginForm.css"
 
 export default function LoginForm({ setUser }) {
@@ -8,6 +10,7 @@ export default function LoginForm({ setUser }) {
     password: ''
   });
   const [error, setError] = useState('');
+  const history = useHistory();
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
@@ -23,15 +26,20 @@ export default function LoginForm({ setUser }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       setUser(user);
+      history.push("/groups");
     } catch {
       setError('Log In Failed - Try Again');
     }
   }
 
+    
+    
+
+
   return (
     <div>
       <div  onSubmit={handleSubmit}>
-          <h3>Log In</h3>
+          <h3 >Log In</h3>
         <form className="form-container" autoComplete="off" >
         <label className="field field_v3">
                 <input className="field__input" 

@@ -39,29 +39,31 @@ export default function NewGroupForm({groups, setGroups, user}) {
     return(
         <>
         <h1 onClick={(evt) => setSelected(prevSelected => !prevSelected)}style={{ backgroundColor: selected ? "black" : ""}}>{selected ? `- Add a Group` : `+ Add a Group`}</h1>
+        <p className="error-message">{error}</p>
+        <p className="success-message">{message}</p>
         {selected  ? 
-        <form className="submit-form" onSubmit={handleSubmit}>
-            <div>
-            <p className="error-message">{error}</p>
-            <p className="success-message">{message}</p>
-                Group Name: 
-                <br/>
-                <input
-                name="name"
-                value={groupData.name}
-                required
-                onChange={handleChange}/>
-            </div>
-            
-            <div>
-                Category: 
-                <br />
+        <form className="form-container" onSubmit={handleSubmit}>
+            <label className="field field_v3">
+                    <input className="field__input" 
+                        placeholder="e.g. West HS"
+                        type="text" 
+                        name="name" 
+                        value={groupData.name}
+                        required
+                        onChange={handleChange}
+                    />
+                    <span className="field__label-wrap">
+                        <span className="field__label">Group Name</span>
+                    </span>
+                </label>
+            <div className="category-field">
+                <div>Category</div>
                 <select
                 name="category"
                 value={groupData.category}
                 required
                 onChange={handleChange}
-                >
+                > 
                 <option value="DCI">DCI</option>
                 <option value="WGI">WGI</option>
                 <option value="DCA">DCA</option>
@@ -69,18 +71,20 @@ export default function NewGroupForm({groups, setGroups, user}) {
                 <option value="Scholastic/Indoor">Scholastic/Indoor</option>
                 </select>
             </div>
-            <div>
-                Video URL: 
-                <br />
-                <input
-                name="videoUrl"
-                value={groupData.videoUrl}
-                required
-                onChange={handleChange}
-                >
-                </input>
-            </div>
-            <button type="submit">+ ADD GROUP</button>
+            <label className="field field_v3">
+                    <input className="field__input" 
+                        placeholder="Youtube Link"
+                        type="text" 
+                        name="videoUrl"
+                        value={groupData.videoUrl}
+                        required
+                        onChange={handleChange}
+                    />
+                    <span className="field__label-wrap">
+                        <span className="field__label">Video URL</span>
+                    </span>
+                </label>
+            <button className="submit" type="submit">+ ADD GROUP</button>
         </form>
         : <div>
         </div>}

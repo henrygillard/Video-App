@@ -45,6 +45,7 @@ async function detail(req, res) {
     .populate("user")
     .exec();
   group.years.sort()
+  group.years.reverse();
   res.json(group);
 }
 

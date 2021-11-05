@@ -54,14 +54,21 @@ export default function UpdateGroupInfo({group, setGroup, user}) {
     return(
         <>
         <h3 style={{ backgroundColor: selected ? "#ab0101" : ""}}className="upload-button" onClick={(evt) => setSelected(prevSelected => !prevSelected)}>Upload a New Video for {group && group.name}</h3>
-        <p className="error-message">{error}</p>
-        <p className="success-message">{message}</p>
         {selected ? 
-        <form className="submit-form" onSubmit={handleSubmit}>
-            <div>
-                <label>Group: <br />{group.name}</label>
-            </div>
-            <div>
+        <form className="form-container" onSubmit={handleSubmit}>
+            <label className="field field_v3">
+                    <input className="field__input" 
+                        type="text" 
+                        name="name"
+                        value={group.name}
+                        required
+                        onChange={handleChange}
+                    />
+                    <span className="field__label-wrap">
+                        <span className="field__label">Group</span>
+                    </span>
+                </label>
+            <div className="select">
                 <label>Year: </label>
                 <select 
                 value={groupData.years}
@@ -70,29 +77,25 @@ export default function UpdateGroupInfo({group, setGroup, user}) {
                     {options}
                 </select>
             </div>
-            {/* <div>
-                Year: 
-                <input
-                name="year"
-                value={groupData.years}
-                required
-                onChange={handleChange}
-                />
-            </div> */}
-            <div>
-                <label>Video URL: </label> 
-                <input
-                name="videoUrl"
-                value={groupData.videoUrl}
-                required
-                onChange={handleChange}
-                >
-                </input>
-            </div>
-            <button type="submit">ADD VIDEO</button>
+            <label className="field field_v3">
+                    <input className="field__input" 
+                        placeholder="Youtube Link"
+                        type="text" 
+                        name="videoUrl"
+                        value={groupData.videoUrl}
+                        required
+                        onChange={handleChange}
+                    />
+                    <span className="field__label-wrap">
+                        <span className="field__label">Video URL</span>
+                    </span>
+                </label>
+            <button className="submit" type="submit">ADD VIDEO</button>
         </form>
         : <div></div>
-        }
+    }
+    <p className="error-message">{error}</p>
+    <p className="success-message">{message}</p>
 
         </>
     )

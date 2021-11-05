@@ -1,5 +1,8 @@
 import { Component } from 'react';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { signUp } from '../../utilities/users-service';
+import { GoogleLogin } from 'react-google-login';
 import "./SignUpForm.css";
 
 export default class SignUpForm extends Component {
@@ -11,6 +14,8 @@ export default class SignUpForm extends Component {
     error: ''
   };
 
+  
+
   handleChange = (evt) => {
     // Unlike setSomeState in function components which
     // REPLACE the state with the arg, setState in class components
@@ -20,6 +25,8 @@ export default class SignUpForm extends Component {
       [evt.target.name]: evt.target.value
     });
   };
+
+  
 
   handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -35,11 +42,16 @@ export default class SignUpForm extends Component {
       const user = await signUp(formData);
       // Baby step
       this.props.setUser(user);
+      
     } catch {
       // An error occurred
       this.setState({ error: 'Sign Up Failed - Try Again'});
     }
   };
+
+
+ 
+ 
 
   // Must override the render method
   // The render method takes the place of 
@@ -51,6 +63,7 @@ export default class SignUpForm extends Component {
       <div>
         <div >
             <h3>Sign-Up</h3>
+            
             <form className="form-container" autoComplete="off" onSubmit={this.handleSubmit}>
                 <label className="field field_v3">
                     <input className="field__input" 
