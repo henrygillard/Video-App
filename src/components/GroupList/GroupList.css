@@ -13,7 +13,19 @@
     }
 
     .all-groups {
-        margin: 0 0.5rem;
+    }
+
+    .icon {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        width: 1.5rem;
+    }
+
+    .search-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.5rem;
     }
 
 }

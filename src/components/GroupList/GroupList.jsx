@@ -4,7 +4,7 @@ import GroupCard from '../GroupCard/GroupCard';
 import * as groupsAPI from "../../utilities/groups-api"
 import NewGroupForm from '../../pages/NewGroupForm/NewGroupForm';
 import './GroupList.css'
-import SearchList from"../../components/SearchList/SearchList";
+import { BiSearchAlt } from 'react-icons/bi';
 
 export default function CatList({groups, setGroups, user}) {
 
@@ -69,19 +69,22 @@ export default function CatList({groups, setGroups, user}) {
             <h1 style={{ backgroundColor: allSel ? "black" : ""}}onClick={(evt) => setAllSel(prevAllSel => !prevAllSel)}>All Groups</h1>
             {allSel ? 
             <div className="all-groups">
+                <div className="search-container">
+                <div className="icon"><BiSearchAlt /></div>
                 <label className="field field_v3"> 
                     <input className="field__input" type="search" placeholder="Search by Name" onChange={handleChange}/>
                     <span className="field__label-wrap">
                         <span className="field__label">Search All Groups</span>
                     </span>
                 </label>
+                </div>
                 {allGroups}
                 {checkGroups()}
             </div>
             : <div></div>}
             <h1 style={{ backgroundColor: dciSel ? "black" : ""}}onClick={(evt) => setdciSel(prevDciSel => !prevDciSel) } >DCI</h1>
         
-            {dci.map((g, idx) => <GroupCard className="dci-groups" key={g.name} idx={idx} group={g} selected={dciSel}/>
+            {dci.map((g, idx) => <GroupCard className="group-name" key={g.name} idx={idx} group={g} selected={dciSel}/>
                 )}
             
             <h1 style={{ backgroundColor: wgiSel ? "black" : ""}}onClick={(evt) => setwgiSel(prevWgiSel => !prevWgiSel) }>WGI</h1>
